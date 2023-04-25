@@ -54,4 +54,29 @@ class PasswordStrengthMeterTest {
     private static void assertSTRONG(PasswordStrength actual) {
         assertEquals(PasswordStrength.STRONG, actual);
     }
+
+    @Test
+    @DisplayName("1개의 규칙을 충족하면 암호는 약함이다. - 최소 길이")
+    void meetLengthCriteria_then_weak() {
+        assertWEAK(meter.meter("##############"));
+        assertWEAK(meter.meter("@@@!!!!!$$"));
+    }
+
+    @Test
+    @DisplayName("1개의 규칙을 충족하면 암호는 약함이다. - 대문자포함")
+    void meetUppercaseCriteria_then_weak() {
+        assertWEAK(meter.meter("AAA"));
+        assertWEAK(meter.meter("BB@!@#V"));
+    }
+
+    @Test
+    @DisplayName("1개의 규칙을 충족하면 암호는 약함이다. - 숫자포함")
+    void meetsDigitCriteria_then_weak() {
+        assertWEAK(meter.meter("1#$%@$#"));
+        assertWEAK(meter.meter("12"));
+    }
+
+    private static void assertWEAK(PasswordStrength actual) {
+        assertEquals(PasswordStrength.WEAK, actual);
+    }
 }

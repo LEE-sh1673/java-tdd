@@ -24,6 +24,21 @@ public class PasswordStrengthMeter {
     }
 
     public PasswordStrength meter(final String password) {
+        int meetsOfCriteria = 0;
+
+        if (hasValidLength(password)) {
+            meetsOfCriteria++;
+        }
+        if (containsUppercase(password)) {
+            meetsOfCriteria++;
+        }
+        if (containsDigit(password)) {
+            meetsOfCriteria++;
+        }
+
+        if (meetsOfCriteria != 3) {
+            return PasswordStrength.WEAK;
+        }
         return PasswordStrength.STRONG;
     }
 }
