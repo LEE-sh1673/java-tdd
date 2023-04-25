@@ -44,4 +44,14 @@ class PasswordStrengthMeterTest {
         assertTrue(meter.containsDigit("11122423rf3409mc SDF"));
     }
 
+    @Test
+    @DisplayName("3개의 규칙을 모두 충족하면 암호는 강함이다.")
+    void meetsAllCriteria_then_strong() {
+        assertSTRONG(meter.meter("skj#flgl22!sfE"));
+        assertSTRONG(meter.meter("skj#124f!!sf!E"));
+    }
+
+    private static void assertSTRONG(PasswordStrength actual) {
+        assertEquals(PasswordStrength.STRONG, actual);
+    }
 }

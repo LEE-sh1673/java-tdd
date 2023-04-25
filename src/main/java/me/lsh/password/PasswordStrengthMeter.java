@@ -22,4 +22,8 @@ public class PasswordStrengthMeter {
         return password.chars()
             .anyMatch(predicate);
     }
+
+    public PasswordStrength meter(final String password) {
+        return PasswordStrength.STRONG;
+    }
 }
