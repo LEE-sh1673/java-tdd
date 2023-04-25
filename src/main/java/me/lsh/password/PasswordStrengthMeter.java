@@ -7,4 +7,9 @@ public class PasswordStrengthMeter {
     public boolean hasValidLength(final String s) {
         return s!= null && s.length() >= MINIMUM_PASSWORD_LENGTH;
     }
+
+    public boolean containsUppercase(final String password) {
+        return password.chars()
+            .anyMatch(Character::isUpperCase);
+    }
 }
