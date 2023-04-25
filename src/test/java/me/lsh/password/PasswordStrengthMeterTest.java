@@ -34,4 +34,14 @@ class PasswordStrengthMeterTest {
         assertTrue(meter.containsUppercase("this is Just Test GG. "));
         assertTrue(meter.containsUppercase("hello hi ho AI!"));
     }
+
+    @Test
+    @DisplayName("숫자가 포함되는지 검사할 수 있다.")
+    void check_digit_contains() {
+        assertFalse(meter.containsDigit(""));
+        assertFalse(meter.containsDigit("sfsdfebSvsd SDF"));
+        assertTrue(meter.containsDigit("sfsdfebSv12sd SDF"));
+        assertTrue(meter.containsDigit("11122423rf3409mc SDF"));
+    }
+
 }
