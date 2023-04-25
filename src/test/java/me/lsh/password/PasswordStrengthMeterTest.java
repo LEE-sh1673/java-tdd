@@ -79,4 +79,29 @@ class PasswordStrengthMeterTest {
     private static void assertWEAK(PasswordStrength actual) {
         assertEquals(PasswordStrength.WEAK, actual);
     }
+
+    @Test
+    @DisplayName("2개의 규칙을 충족하면 암호는 보통이다. - 최소 길이 & 대문자 포함")
+    void meets_LengthAndUppercase_Criteria_then_normal() {
+        assertNORMAL(meter.meter("#########A#####"));
+        assertNORMAL(meter.meter("@@@!!!!!$A$"));
+    }
+
+    @Test
+    @DisplayName("2개의 규칙을 충족하면 암호는 보통이다. - 대문자 & 숫자 포함")
+    void meets_UppercaseAndDigit_Criteria_then_normal() {
+        assertNORMAL(meter.meter("AA12C"));
+        assertNORMAL(meter.meter("#@^P0d"));
+    }
+
+    @Test
+    @DisplayName("2개의 규칙을 충족하면 암호는 보통이다. - 숫자 & 길이 포함")
+    void meets_DigitAndLength_Criteria_then_normal() {
+        assertNORMAL(meter.meter("1111111111111"));
+        assertNORMAL(meter.meter("#@$*@#$%1$#%"));
+    }
+
+    private static void assertNORMAL(PasswordStrength actual) {
+        assertEquals(PasswordStrength.NORMAL, actual);
+    }
 }

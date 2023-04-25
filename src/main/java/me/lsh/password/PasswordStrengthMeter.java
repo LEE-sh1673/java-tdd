@@ -36,8 +36,10 @@ public class PasswordStrengthMeter {
             meetsOfCriteria++;
         }
 
-        if (meetsOfCriteria != 3) {
+        if (meetsOfCriteria == 1) {
             return PasswordStrength.WEAK;
+        } else if (meetsOfCriteria == 2) {
+            return PasswordStrength.NORMAL;
         }
         return PasswordStrength.STRONG;
     }
