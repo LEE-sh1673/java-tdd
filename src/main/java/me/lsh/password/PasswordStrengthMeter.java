@@ -24,12 +24,12 @@ public class PasswordStrengthMeter {
     public PasswordStrength meter(final String password) {
         long satisfies = countValidationSatisfies(password);
 
-        if (satisfies <= 1) {
-            return PasswordStrength.WEAK;
+        if (satisfies == 3) {
+            return PasswordStrength.STRONG;
         } else if (satisfies == 2) {
             return PasswordStrength.NORMAL;
         }
-        return PasswordStrength.STRONG;
+        return PasswordStrength.WEAK;
     }
 
     private long countValidationSatisfies(final String password) {
