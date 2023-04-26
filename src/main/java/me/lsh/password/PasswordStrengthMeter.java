@@ -3,6 +3,9 @@ package me.lsh.password;
 public class PasswordStrengthMeter {
 
     public PasswordStrength meter(final String password) {
+        if (password == null || password.isEmpty()) {
+            return PasswordStrength.INVALID;
+        }
         if (password.length() < 8) {
             return PasswordStrength.NORMAL;
         }
