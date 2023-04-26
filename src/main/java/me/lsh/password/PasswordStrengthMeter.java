@@ -26,7 +26,7 @@ public class PasswordStrengthMeter {
     public PasswordStrength meter(final String password) {
         int meetsOfCriteria = getMeetsOfCriteria(password);
 
-        if (meetsOfCriteria == 1) {
+        if (meetsOfCriteria <= 1) {
             return PasswordStrength.WEAK;
         } else if (meetsOfCriteria == 2) {
             return PasswordStrength.NORMAL;
