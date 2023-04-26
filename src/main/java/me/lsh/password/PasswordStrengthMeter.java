@@ -3,33 +3,31 @@ package me.lsh.password;
 public class PasswordStrengthMeter {
 
     public PasswordStrength meter(final String password) {
-        if (password == null || password.isEmpty()) {
+        if (isInvalidPassword(password)) {
             return PasswordStrength.INVALID;
         }
+        int metCounts = 0;
 
-        boolean lengthEnough = meetsEnoughLengthCriteria(password);
-        boolean containingNumber = meetsContainingNumberCriteria(password);
-        boolean containingUppercase = meetsContainingUppercaseCriteria(password);
+        if (meetsEnoughLengthCriteria(password)) {
+            metCounts++;
+        }
+        if (meetsContainingNumberCriteria(password)) {
+            metCounts++;
+        }
+        if (meetsContainingUppercaseCriteria(password)) {
+            metCounts++;
+        }
 
-        if (lengthEnough && !containingNumber && !containingUppercase) {
-            return PasswordStrength.WEAK;
-        }
-        if (!lengthEnough && containingNumber && !containingUppercase) {
-            return PasswordStrength.WEAK;
-        }
-        if (!lengthEnough && !containingNumber && containingUppercase) {
-            return PasswordStrength.WEAK;
-        }
-        if (!lengthEnough) {
+        if (metCounts == 3) {
+            return PasswordStrength.STRONG;
+        } else if (metCounts == 2) {
             return PasswordStrength.NORMAL;
         }
-        if (!containingNumber) {
-            return PasswordStrength.NORMAL;
-        }
-        if (!containingUppercase) {
-            return PasswordStrength.NORMAL;
-        }
-        return PasswordStrength.STRONG;
+        return PasswordStrength.WEAK;
+    }
+
+    private static boolean isInvalidPassword(final String password) {
+        return password == null || password.isEmpty();
     }
 
     private static boolean meetsEnoughLengthCriteria(final String password) {
