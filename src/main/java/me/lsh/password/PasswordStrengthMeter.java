@@ -6,17 +6,7 @@ public class PasswordStrengthMeter {
         if (isInvalidPassword(password)) {
             return PasswordStrength.INVALID;
         }
-        int metCounts = 0;
-
-        if (meetsEnoughLengthCriteria(password)) {
-            metCounts++;
-        }
-        if (meetsContainingNumberCriteria(password)) {
-            metCounts++;
-        }
-        if (meetsContainingUppercaseCriteria(password)) {
-            metCounts++;
-        }
+        int metCounts = getMetCriteriaCounts(password);
 
         if (metCounts == 3) {
             return PasswordStrength.STRONG;
@@ -28,6 +18,21 @@ public class PasswordStrengthMeter {
 
     private static boolean isInvalidPassword(final String password) {
         return password == null || password.isEmpty();
+    }
+
+    private static int getMetCriteriaCounts(final String password) {
+        int metCounts = 0;
+
+        if (meetsEnoughLengthCriteria(password)) {
+            metCounts++;
+        }
+        if (meetsContainingNumberCriteria(password)) {
+            metCounts++;
+        }
+        if (meetsContainingUppercaseCriteria(password)) {
+            metCounts++;
+        }
+        return metCounts;
     }
 
     private static boolean meetsEnoughLengthCriteria(final String password) {
