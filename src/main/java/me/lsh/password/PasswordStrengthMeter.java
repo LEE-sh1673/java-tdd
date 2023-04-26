@@ -24,6 +24,17 @@ public class PasswordStrengthMeter {
     }
 
     public PasswordStrength meter(final String password) {
+        int meetsOfCriteria = getMeetsOfCriteria(password);
+
+        if (meetsOfCriteria == 1) {
+            return PasswordStrength.WEAK;
+        } else if (meetsOfCriteria == 2) {
+            return PasswordStrength.NORMAL;
+        }
+        return PasswordStrength.STRONG;
+    }
+
+    private int getMeetsOfCriteria(final String password) {
         int meetsOfCriteria = 0;
 
         if (hasValidLength(password)) {
@@ -35,12 +46,6 @@ public class PasswordStrengthMeter {
         if (containsDigit(password)) {
             meetsOfCriteria++;
         }
-
-        if (meetsOfCriteria == 1) {
-            return PasswordStrength.WEAK;
-        } else if (meetsOfCriteria == 2) {
-            return PasswordStrength.NORMAL;
-        }
-        return PasswordStrength.STRONG;
+        return meetsOfCriteria;
     }
 }
