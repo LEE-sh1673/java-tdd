@@ -11,40 +11,6 @@ class PasswordStrengthMeterTest {
         = new PasswordStrengthMeter();
 
     @Test
-    @DisplayName("암호의 길이를 검사할 수 있다.")
-    void check_password_length() {
-        assertTrue(meter.hasValidLength("1svw%wn^!fs"));
-        assertTrue(meter.hasValidLength("vsdfsdfw%s"));
-    }
-
-    @Test
-    @DisplayName("유효하지 않은 암호의 길이를 검사할 수 있다.")
-    void check_invalid_password_length() {
-        assertFalse(meter.hasValidLength(""));
-        assertFalse(meter.hasValidLength("sdfsd"));
-        assertFalse(meter.hasValidLength(null));
-    }
-
-    @Test
-    @DisplayName("대문자가 포함되는지 검사할 수 있다.")
-    void check_uppercase_contains() {
-        assertFalse(meter.containsUppercase(""));
-        assertFalse(meter.containsUppercase("hello"));
-        assertTrue(meter.containsUppercase("Hello"));
-        assertTrue(meter.containsUppercase("this is Just Test GG. "));
-        assertTrue(meter.containsUppercase("hello hi ho AI!"));
-    }
-
-    @Test
-    @DisplayName("숫자가 포함되는지 검사할 수 있다.")
-    void check_digit_contains() {
-        assertFalse(meter.containsDigit(""));
-        assertFalse(meter.containsDigit("sfsdfebSvsd SDF"));
-        assertTrue(meter.containsDigit("sfsdfebSv12sd SDF"));
-        assertTrue(meter.containsDigit("11122423rf3409mc SDF"));
-    }
-
-    @Test
     @DisplayName("3개의 규칙을 모두 충족하면 암호는 강함이다.")
     void meetsAllCriteria_then_strong() {
         assertSTRONG(meter.meter("skj#flgl22!sfE"));
