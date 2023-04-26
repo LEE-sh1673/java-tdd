@@ -22,17 +22,17 @@ public class PasswordStrengthMeter {
     }
 
     public PasswordStrength meter(final String password) {
-        long meetsOfCriteria = countValidations(password);
+        long satisfies = countValidationSatisfies(password);
 
-        if (meetsOfCriteria <= 1) {
+        if (satisfies <= 1) {
             return PasswordStrength.WEAK;
-        } else if (meetsOfCriteria == 2) {
+        } else if (satisfies == 2) {
             return PasswordStrength.NORMAL;
         }
         return PasswordStrength.STRONG;
     }
 
-    private long countValidations(final String password) {
+    private long countValidationSatisfies(final String password) {
         return validators.stream()
             .filter(validator -> validator.validate(password))
             .count();
