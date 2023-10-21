@@ -23,4 +23,13 @@ public class PasswordRuleCheckerTest {
         assertThat(rule.check(Password.of("abcdefg"))).isFalse();
         assertThat(rule.check(Password.of("2abc0defg"))).isTrue();
     }
+
+    @Test
+    @DisplayName("대문자를 포함하는지 검사할 수 있다.")
+    void containsUpperCase_Then_True() {
+        final PasswordRule rule = new PasswordUpperCaseRule();
+        assertThat(rule.check(Password.of("AAAA"))).isTrue();
+        assertThat(rule.check(Password.of("0123456789"))).isFalse();
+        assertThat(rule.check(Password.of("2abc0defg"))).isFalse();
+    }
 }
