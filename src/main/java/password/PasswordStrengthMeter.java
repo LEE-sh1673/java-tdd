@@ -14,10 +14,6 @@ public class PasswordStrengthMeter {
 
     public PasswordStrength meter(final String password) {
         long numberOfMatches = rules.numberOfMatches(Password.of(password));
-
-        if (numberOfMatches == 1) {
-            return PasswordStrength.WEAK;
-        }
-        return PasswordStrength.NORMAL;
+        return PasswordStrength.of(numberOfMatches);
     }
 }

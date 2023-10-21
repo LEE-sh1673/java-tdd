@@ -23,4 +23,12 @@ public class PasswordStrengthMeterTest {
         PasswordStrengthMeter strengthMeter = new PasswordStrengthMeter();
         assertThat(strengthMeter.meter(password)).isEqualTo(PasswordStrength.NORMAL);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A12CFdsfGH", "sfs1243Df12js"})
+    @DisplayName("규칙을 모두 만족하면 강도는 강함이다.")
+    void meetsAllCriteria_Then_STRONG(final String password) {
+        PasswordStrengthMeter strengthMeter = new PasswordStrengthMeter();
+        assertThat(strengthMeter.meter(password)).isEqualTo(PasswordStrength.STRONG);
+    }
 }
