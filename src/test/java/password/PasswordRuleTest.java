@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PasswordRuleCheckerTest {
+public class PasswordRuleTest {
 
     @Test
     @DisplayName("길이가 8글자 이상인지 검사할 수 있다.")
