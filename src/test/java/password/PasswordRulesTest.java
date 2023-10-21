@@ -61,4 +61,12 @@ public class PasswordRulesTest {
         final Password password = Password.of(userPassword);
         assertThat(passwordRules.numberOfMatches(password)).isEqualTo(2L);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A12CFdsfGH", "sfs1243Df12js"})
+    @DisplayName("길이가 8 이상인 대문자와 숫자를 포함하는 암호는 3개의 규칙에 만족한다.")
+    void meetsAllCriteria_Then_AllMatches(final String userPassword) {
+        final Password password = Password.of(userPassword);
+        assertThat(passwordRules.numberOfMatches(password)).isEqualTo(3L);
+    }
 }
