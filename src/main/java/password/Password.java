@@ -4,8 +4,11 @@ public class Password {
 
     private static final String WHITE_SPACE = " ";
 
+    private final String password;
+
     public Password(final String password) {
         validate(password);
+        this.password = password;
     }
 
     private void validate(final String password) {
@@ -31,5 +34,9 @@ public class Password {
 
     private static boolean containsWhitespace(final String password) {
         return password.contains(WHITE_SPACE);
+    }
+
+    public int getLength() {
+        return password.length();
     }
 }
