@@ -14,7 +14,9 @@ public class PasswordRules {
         return new PasswordRules(List.of(rules));
     }
 
-    public int numberOfMatches(final Password password) {
-        return 1;
+    public long numberOfMatches(final Password password) {
+        return passwordRules.stream()
+                .filter(rule -> rule.check(password))
+                .count();
     }
 }

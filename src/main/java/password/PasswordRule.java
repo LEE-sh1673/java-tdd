@@ -23,7 +23,7 @@ public enum PasswordRule {
 
     private enum PasswordPattern {
         UPPER_CASE(".*[A-Z].*"),
-        DIGIT(".*\\d.*");
+        DIGIT(".*[0-9].*");
 
         private final String regex;
 
