@@ -25,14 +25,14 @@ public enum PasswordRule {
         UPPER_CASE(".*[A-Z].*"),
         DIGIT(".*[0-9].*");
 
-        private final String regex;
+        private final Pattern pattern;
 
         PasswordPattern(final String regex) {
-            this.regex = regex;
+            this.pattern = Pattern.compile(regex);
         }
 
         public boolean matches(final Password password) {
-            return password.matches(Pattern.compile(regex));
+            return password.matches(pattern);
         }
     }
 }
