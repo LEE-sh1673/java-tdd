@@ -17,4 +17,12 @@ public class PasswordTest {
         assertThatThrownBy(() -> new Password(password))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" test", " test, sdf", "password test", "   sdf"})
+    @DisplayName("암호에 공백이 포함되어 있으면 예외가 발생한다.")
+    void containsWhitespace_Then_ExceptionOccurs(final String password) {
+        assertThatThrownBy(() -> new Password(password))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
