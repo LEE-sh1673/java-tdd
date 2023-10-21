@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public enum PasswordRule {
 
-    IS_GREATER_OR_EQUAL_TO_EIGHT(password -> password.getLength() == 8),
+    IS_GREATER_OR_EQUAL_TO_EIGHT(password -> password.getLength() >= 8),
 
     CONTAINS_UPPER_CASE(PasswordPattern.UPPER_CASE::matches),
 
