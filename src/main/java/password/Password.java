@@ -1,5 +1,7 @@
 package password;
 
+import java.util.regex.Pattern;
+
 public class Password {
 
     private static final String WHITE_SPACE = " ";
@@ -38,5 +40,9 @@ public class Password {
 
     public int getLength() {
         return password.length();
+    }
+
+    public boolean matches(final Pattern pattern) {
+        return pattern.matcher(password).matches();
     }
 }
