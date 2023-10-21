@@ -15,4 +15,12 @@ public class PasswordStrengthMeterTest {
         PasswordStrengthMeter strengthMeter = new PasswordStrengthMeter();
         assertThat(strengthMeter.meter(password)).isEqualTo(PasswordStrength.WEAK);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"012345678", "sdfIJsfkhjsWE", "sDf12js"})
+    @DisplayName("2개 이하의 규칙을 만족하면 강도는 보통이다.")
+    void meetsTwoCriteria_Then_NORMAL(final String password) {
+        PasswordStrengthMeter strengthMeter = new PasswordStrengthMeter();
+        assertThat(strengthMeter.meter(password)).isEqualTo(PasswordStrength.NORMAL);
+    }
 }
