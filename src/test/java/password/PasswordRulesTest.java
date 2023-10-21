@@ -37,4 +37,28 @@ public class PasswordRulesTest {
         final Password password = Password.of(userPassword);
         assertThat(passwordRules.numberOfMatches(password)).isEqualTo(1L);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"012345678", "54972347239143"})
+    @DisplayName("길이가 8 이상인 숫자 암호는 2개의 규칙에 만족한다.")
+    void meetsLengthAndNumberCriteria_Then_TwoMatches(final String userPassword) {
+        final Password password = Password.of(userPassword);
+        assertThat(passwordRules.numberOfMatches(password)).isEqualTo(2L);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"AbCdeFGH", "sdfIJsfkhjsWE"})
+    @DisplayName("길이가 8 이상인 대문자 암호는 2개의 규칙에 만족한다.")
+    void meetsLengthAndUpperCaseCriteria_Then_TwoMatches(final String userPassword) {
+        final Password password = Password.of(userPassword);
+        assertThat(passwordRules.numberOfMatches(password)).isEqualTo(2L);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A12CFGH", "sDf12js"})
+    @DisplayName("대문자와 숫자를 포함하는 암호는 2개의 규칙에 만족한다.")
+    void meetsUpperCaseAndLengthCriteria_Then_TwoMatches(final String userPassword) {
+        final Password password = Password.of(userPassword);
+        assertThat(passwordRules.numberOfMatches(password)).isEqualTo(2L);
+    }
 }
